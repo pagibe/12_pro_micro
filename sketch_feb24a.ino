@@ -22,9 +22,9 @@
 
 
 
-#define NUMBER_OF_KEYS         11    // Count of keys in the keyboard
-#define MAX_COMBINATION_KEYS   4    // Maximum number of key codes that can be pressed at the same time (does dont correspond to actually pressed keys)
-#define MAX_SEQUENCE_KEYS     16    // Maximum length of key combination sequence (that means first you send CTRL + Z (1. combination), then SHIFT + ALT + X (2. combination), then A (3. combination) ... )
+#define NUMBER_OF_KEYS         12    // Count of keys in the keyboard
+#define MAX_COMBINATION_KEYS   3    // Maximum number of key codes that can be pressed at the same time (does dont correspond to actually pressed keys)
+#define MAX_SEQUENCE_KEYS     5    // Maximum length of key combination sequence (that means first you send CTRL + Z (1. combination), then SHIFT + ALT + X (2. combination), then A (3. combination) ... )
 
 #define DEBOUNCING_MS         20    // wait in ms when key can oscilate
 #define FIRST_REPEAT_CODE_MS 500    // after FIRST_REPEAT_CODE_MS ,s if key is still pressed, start sending the command again
@@ -73,7 +73,7 @@ typedef struct TKeys {
 // Define actions for your keys
 TKey key[NUMBER_OF_KEYS] = {
   {.pin =  2, .type = KEYBOARD, .state = INACTIVE, .stateStartMs = 0, .modificatorKeys = {}, .action = {{.durationMs = 50, .key = {KEY_T}}, {.durationMs = 50, .key = {KEY_E}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_O}}}},
-  //{.pin =  3, .type = KEYBOARD, .state = INACTIVE, .stateStartMs = 0, .modificatorKeys = {}, .action = {{.durationMs = 50, .key = {KEY_H}}, {.durationMs = 50, .key = {KEY_E}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_O}}}},
+  {.pin =  3, .type = KEYBOARD, .state = INACTIVE, .stateStartMs = 0, .modificatorKeys = {}, .action = {{.durationMs = 50, .key = {KEY_H}}, {.durationMs = 50, .key = {KEY_E}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_O}}}},
   {.pin =  4, .type = KEYBOARD, .state = INACTIVE, .stateStartMs = 0, .modificatorKeys = {}, .action = {{.durationMs = 50, .key = {KEY_H}}, {.durationMs = 50, .key = {KEY_E}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_O}}}},
   {.pin =  5, .type = KEYBOARD, .state = INACTIVE, .stateStartMs = 0, .modificatorKeys = {}, .action = {{.durationMs = 50, .key = {KEY_T}}, {.durationMs = 50, .key = {MOUSE_LEFT}}}},
   {.pin =  6, .type = KEYBOARD, .state = INACTIVE, .stateStartMs = 0, .modificatorKeys = {}, .action = {{.durationMs = 50, .key = {KEY_H}}, {.durationMs = 50, .key = {KEY_E}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_L}}, {.durationMs = 50, .key = {KEY_O}}}},
