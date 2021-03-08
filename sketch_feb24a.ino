@@ -35,6 +35,11 @@
 #define ENCODER_DT            A1
 #define ENCODER_SW            A2
 
+#define KEY_MOUSE_LEFT            0xF0  // numbers not used in ImprovedKeylayouts.h from HID-Project
+#define KEY_MOUSE_RIGHT           0xF1
+#define KEY_MOUSE_MIDDLE          0xF2
+
+int8_t translate[3] = {MOUSE_LEFT, MOUSE_RIGHT, MOUSE_MIDDLE};  // KEY_MOUSE_LEFT with code 0xF0 is position 0
 
 
 // Defining types
@@ -114,14 +119,28 @@ uint8_t processKey(uint8_t keyIndex) {
       if ((laction->durationMs) || (laction->key[0])) {
         //press keys
         for (uint8_t j = 0; j < MAX_COMBINATION_KEYS; j++) {
-          if (laction->key[j]) Keyboard.press((KeyboardKeycode) laction->key[j]);
+          if (laction->key[j]) {
+              if(laction->key[j] < KEY_MOUSE_LEFT) {
+                  Keyboard.press((KeyboardKeycode) laction->key[j]);
+              }
+              else {
+                  Mouse.press((uint8_t) translate[laction->key[j]-KEY_MOUSE_LEFT]);
+              }
+          }
           else break;
         }
         // wait
         if (laction->durationMs) delay(laction->durationMs);
         //release keys
         for (uint8_t j = 0; j < MAX_COMBINATION_KEYS; j++) {
-          if (laction->key[j]) Keyboard.release((KeyboardKeycode) laction->key[j]);
+          if (laction->key[j]) {
+              if(laction->key[j] < KEY_MOUSE_LEFT) {
+                  Keyboard.release((KeyboardKeycode) laction->key[j]);
+              }
+              else {
+                  Mouse.release((uint8_t) translate[laction->key[j]-KEY_MOUSE_LEFT]);
+              }
+          }
           else break;
         }
       } else {
